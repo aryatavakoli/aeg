@@ -11,11 +11,9 @@
 #include <stddef.h>
 #include <string.h>
 #include <unistd.h>
-#include "pwnable_harness.h"
-
 
 /* Filename of the first flag */
-static const char* flagfile = "flag1.txt";
+static const char* flagfile = "flag.txt";
 
 /* Send the user the contents of the first flag file. */
 static void giveFlag(void) {
@@ -33,7 +31,7 @@ static void giveFlag(void) {
 }
 
 /* Called when an incoming client connection is received. */
-static void handle_connection(int sock) {
+int main(int argc, char** argv) {
 	bool didPurchase = false;
 	char input[50];
 	
@@ -49,16 +47,4 @@ static void handle_connection(int sock) {
 	else {
 		printf("This program has not been purchased.\n");
 	}
-}
-
-int main(int argc, char** argv) {
-	/* Defaults: Run on port 32101 for 30 seconds as user "ctf_stack0" inside a chroot */
-	server_options opts = {
-		.user = "ctf_stack0",
-		.chrooted = true,
-		.port = 32101,
-		.time_limit_seconds = 30
-	};
-	
-	return server_main(argc, argv, opts, &handle_connection);
 }

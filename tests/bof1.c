@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "pwnable_harness.h"
 
 void win(void) {
 	char flag[64];
@@ -16,7 +15,7 @@ void win(void) {
 	puts(flag);
 }
 
-void handle_connection(int sock) {
+int main(int argc, char** argv){
 	int admin = 0;
 	char buf[32];
 	

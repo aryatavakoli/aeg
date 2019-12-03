@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h> 
-#include "pwnable_harness.h"
 
 void win(void) {
 	char flag[64];
@@ -16,7 +15,7 @@ void win(void) {
 	puts(flag);
 }
 
-void handle_connection(int sock) {
+int main(int argc, char** argv) {
 	int correct = 0;
 	char bof[64];
 	
@@ -28,17 +27,4 @@ void handle_connection(int sock) {
 	}
 	
 	win();
-}
-
-
-int main(int argc, char** argv) {
-	/* Defaults: Run on port 9001 for 30 seconds as user "ctf_bof2" in a chroot */
-	server_options opts = {
-		.user = "ctf_bof2",
-		.chrooted = true,
-		.port = 9001,
-		.time_limit_seconds = 30
-	};
-	
-	return server_main(argc, argv, opts, &handle_connection);
 }
