@@ -29,16 +29,3 @@ void handle_connection(int sock) {
 		puts("nope!");
 	}
 }
-
-
-int main(int argc, char** argv) {
-	/* Defaults: Run on port 9000 for 30 seconds as user "ctf_bof1" in a chroot */
-	server_options opts = {
-		.user = "ctf_bof1",
-		.chrooted = true,
-		.port = 9000,
-		.time_limit_seconds = 30
-	};
-	
-	return server_main(argc, argv, opts, &handle_connection);
-}
