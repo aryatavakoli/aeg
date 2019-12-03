@@ -21,10 +21,10 @@ workon aeg
 
 # For angr
 # sudo -H pip3 install pip3 install one_gadget angr cffi pycparser
-# sudo -H pip3 install IPython r2pipe psutil psutil pwn timeout_decorator
+# sudo -H pip3 install IPython r2pipe psutil pwn timeout_decorator
 
 # For Manticore
-sudo -H pip3 install manticore r2pipe timeout_decorator pwn
+# sudo -H pip3 install manticore r2pipe timeout_decorator pwn
 
 #Installs r2
 git clone https://github.com/radare/radare2.git
