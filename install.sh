@@ -21,15 +21,12 @@ workon aeg
 
 # For angr
 # sudo -H pip3 install pip3 install one_gadget cffi
-# sudo -H pip3 install angr IPython r2pipe pwn timeout_decorator
-
-# For Manticore
-# sudo -H pip3 install manticore r2pipe timeout_decorator pwn
+sudo -H pip3 install angr IPython r2pipe pwn timeout_decorator
 
 #Installs r2
 git clone https://github.com/radare/radare2.git
 sudo ./radare2/sys/install.sh
 
 echo "####################"
-echo "Soruce bashfile"
+echo "Source bashfile"
 echo "run: workon aeg"

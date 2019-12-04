@@ -11,6 +11,10 @@ https://web.wpi.edu/Pubs/E-project/Available/E-project-101816-114710/unrestricte
 
 """
 
+"""
+Take in program arguments and construct a SimulationManager
+"""
+
 import angr
 import claripy
 

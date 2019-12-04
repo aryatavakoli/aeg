@@ -1,4 +1,10 @@
 """
+Sources:
+https://docs.angr.io/built-in-analyses/cfg
+"""
+
+
+"""
 Determines what kind of input the program is expecting.
 Either input from specfied arguments or from stdin
 """
@@ -22,7 +28,7 @@ def detect(executable):
     p = angr.Project(executable,load_options={"auto_load_libs": False})
 
     """
-    Generate Control Flow Graph (CFG) - https://docs.angr.io/built-in-analyses/cfg
+    Generate Control Flow Graph (CFG)
     Knowledge Base(kb) Represents the artifacts of a project.
     Function Manager (functions) provides properties about a function
 
