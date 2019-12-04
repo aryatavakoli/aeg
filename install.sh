@@ -20,8 +20,8 @@ mkvirtualenv --python=$VIRTUALENVWRAPPER_PYTHON aeg
 workon aeg
 
 # For angr
-# sudo -H pip3 install pip3 install one_gadget angr cffi pycparser
-# sudo -H pip3 install IPython r2pipe psutil pwn timeout_decorator
+# sudo -H pip3 install pip3 install one_gadget cffi
+# sudo -H pip3 install angr IPython r2pipe pwn timeout_decorator
 
 # For Manticore
 # sudo -H pip3 install manticore r2pipe timeout_decorator pwn

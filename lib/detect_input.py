@@ -13,7 +13,7 @@ def common_member(a,b):
     return False
 
 
-def detect_input_type(executable):
+def detect(executable):
 
     stdin_functions = ['scanf','gets','read','fgets']
     binary_functions = []
