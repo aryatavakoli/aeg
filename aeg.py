@@ -39,9 +39,9 @@ def main() :
     simgr = create_simgr.create(executable,input_type)
     print(str(simgr))
     
-    # Detect Vulnerbility Type
+    # Check for overflow
     print("[AEG +] Checking for Overflow Vulnerbility")
-    executable_properties['vul_type'] = detect_overflow.detect(simgr)
+    executable_properties['check_overflow_type'] = detect_overflow.detect(simgr)
 
 
     # Detect Vulnerbility Mitigations
