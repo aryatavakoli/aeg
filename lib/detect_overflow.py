@@ -7,5 +7,5 @@ https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/automated
 import angr
 import claripy
 
-def detect(simgr):
+def detect(simgr,global_state):
     return 0

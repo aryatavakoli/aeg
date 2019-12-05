@@ -1,5 +1,6 @@
 """
 Sources:
+https://docs.angr.io/extending-angr/simprocedures
 
 https://github.com/angr/angr-doc/blob/master/docs/loading.md
 
@@ -23,7 +24,25 @@ def create(executable,input_type):
     #load binary in angr
     p = angr.Project(executable,load_options={"auto_load_libs": False})
 
+    class RandomHook(angr.SimProcedure):
+        IS_FUNCTION = True
+        def run(self):
+            return 4
+    
     """
+    hook psudeocode:
+        while(true):
+            if(current address is hooked):
+                Ignore(libc_function)
+                run(hook)
+    """
+    # If our program runs into srand() or rand() during execution,
+    # The hook makes sure both functions return a consistent value
+    p.hook_symbol("rand",RandomHook())
+    p.hook_symbol("srand",RandomHook())
+
+    """
+    hooks: replaces libc functions with a python function
     SimProcedures: Map system calls to python functions will be using POSIX in this case
     factory: Provides access to path groups and symbolic execution results.
     full_init_state: calls each initializer function before execution reaches the entry point.
@@ -53,7 +72,6 @@ def create(executable,input_type):
         state = p.factory.full_init_state(args=argv)
 
     state.globals['input_type'] = input_type
-    print(str(state))
     simgr = p.factory.simulation_manager(state,save_unconstrained=True)
     
-    return simgr
+    return (simgr,state)

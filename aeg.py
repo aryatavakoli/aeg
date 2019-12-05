@@ -36,12 +36,17 @@ def main() :
 
     # Create Simulation Manager
     print("[AEG +] Create SimulationManager")
-    simgr = create_simgr.create(executable,input_type)
+    simgr_tuple = create_simgr.create(executable,input_type)
+
+    simgr = simgr_tuple[0]
+    global_state = simgr_tuple[1]
+    
+    print(str(global_state))
     print(str(simgr))
     
     # Check for overflow
     print("[AEG +] Checking for Overflow Vulnerbility")
-    executable_properties['check_overflow_type'] = detect_overflow.detect(simgr)
+    executable_properties['check_overflow_type'] = detect_overflow.detect(simgr, global_state)
 
 
     # Detect Vulnerbility Mitigations
