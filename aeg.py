@@ -52,7 +52,6 @@ def main() :
     simgr.explore(step_func=overflow.detectSTDIN)
     print(simgr.stashes['mem_corrupt'])
     print("[AEG +] Vulnerable paths found!")
-    IPython.embed()
 
 
     # Detect Vulnerbility Mitigations
