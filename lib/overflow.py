@@ -18,8 +18,6 @@ def detectSTDIN(simgr):
                 for c in constraints:
                     state.add_constraints(c)
                 if state.satisfiable():
-                    print("[AEG +] Vulnerable path found!")
-                    print(str(path))
                     simgr.stashes['mem_corrupt'].append(path)
                 simgr.stashes['unconstrained'].remove(path)
                 simgr.drop(stash='active')

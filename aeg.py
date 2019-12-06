@@ -48,8 +48,10 @@ def main() :
     simgr = create_simgr.create(executable,input_type)
     
     # Check for overflow
-    print("[AEG +] Checking for" + str(simgr.stashes['input_type']) + "  Type Overflow")
+    print("[AEG +] Checking for " + str(simgr.stashes['input_type']) + " Input Type Overflow")
     simgr.explore(step_func=overflow.detectSTDIN)
+    print(simgr.stashes['mem_corrupt'])
+    print("[AEG +] Vulnerable paths found!")
 
 
     # Detect Vulnerbility Mitigations

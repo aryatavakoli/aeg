@@ -121,9 +121,7 @@ def create(executable,input_type):
     else:
         # If input_type is STDIN only 
         state = p.factory.full_init_state(args=argv)
-
     simgr = p.factory.simulation_manager(state,save_unconstrained=True)
-    simgr.stashes['input_type'] = input_type
     simgr.stashes['mem_corrupt']  = []
 
     return simgr
