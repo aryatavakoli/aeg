@@ -2,7 +2,7 @@
 import angr
 import claripy
 
-def detect(simgr):
+def detectSTDIN(simgr):
     print(simgr)
     if len(simgr.unconstrained):
         for path in simgr.unconstrained:
