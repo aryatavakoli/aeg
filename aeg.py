@@ -1,10 +1,23 @@
+"""
+Sources:
+https://docs.angr.io/extending-angr/simprocedures
+https://docs.angr.io/built-in-analyses/cfg
+https://github.com/angr/angr-doc/blob/master/docs/loading.md
+https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md
+https://dev.to/denisnutiu/introduction-to-angr-kf8
+https://web.wpi.edu/Pubs/E-project/Available/E-project-101816-114710/unrestricted/echeng_mqp_angr.pdf
+https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/automated-exploit-development/buffer-overflows
+
+Special Thanks:
+Couldn't finish this project without Christopher Robert (@Sidragon1) resources
+"""
 import angr
 import argparse
-import logging
+import IPython
 
-from lib import detect_input
 from lib import create_simgr
-from lib import detect_overflow
+from lib import overflow
+import logging
 def main() :
     print("[AEG +] Program Started")
     # Parse Arguments
@@ -25,28 +38,19 @@ def main() :
     print("[AEG +] Checking Input Type")
 
     #create a map to store the properties of the executable
-    executable_properties = {}
-    input_type = detect_input.detect(executable)
+    input_type = create_simgr.detect(executable)
 
-
-    executable_properties['file'] = executable
-    executable_properties['input_type'] = input_type
     print("[AEG +] " + "Executable " + str(executable) + " uses " + input_type + " Input Type")
     
 
     # Create Simulation Manager
     print("[AEG +] Create SimulationManager")
-    simgr_tuple = create_simgr.create(executable,input_type)
-
-    simgr = simgr_tuple[0]
-    global_state = simgr_tuple[1]
-    
-    print(str(global_state))
-    print(str(simgr))
+    simgr = create_simgr.create(executable,input_type)
     
     # Check for overflow
     print("[AEG +] Checking for Overflow Vulnerbility")
-    executable_properties['check_overflow_type'] = detect_overflow.detect(simgr, global_state)
+    simgr.explore(step_func=overflow.detect)
+    print(simgr.stashes['input_type'])
 
 
     # Detect Vulnerbility Mitigations
